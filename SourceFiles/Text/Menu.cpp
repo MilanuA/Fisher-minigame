@@ -1,11 +1,6 @@
-//
-// Created by alex on 14.12.24.
-//
-
 #include "../../HeaderFiles/Text/Menu.h"
-
 #include <iostream>
-
+#include <limits>
 #include "Text/TextFormatting.h"
 
 
@@ -31,20 +26,29 @@ void Menu::ShowMenu()
 
 
         std::cout << "Choose an option: ";
+
         int choice;
-        std::cin >> choice;
+
+        if (!(std::cin >> choice))
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << TextFormatting::Bold << TextFormatting::Red <<"\nInvalid input. Please enter a number.\n" << TextFormatting::Reset;
+            continue;
+        }
+
 
         if (choice == optionCount + 1)
         {
             running = false;
         }
-        else if (options.count(choice))
+        else if (options.contains(choice))
         {
             options[choice].action();
         }
         else
         {
-            std::cout << "Invalid choice. Please try again.\n";
+            std::cout << TextFormatting::Bold << TextFormatting::Red <<"\nInvalid choice.\n" << TextFormatting::Reset;
         }
     }
 }
