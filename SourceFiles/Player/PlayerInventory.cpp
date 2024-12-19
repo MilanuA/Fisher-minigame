@@ -1,9 +1,11 @@
 #include "../HeaderFiles/Player/PlayerInventory.h"
 #include <iostream>
+#include <nlohmann/json.hpp>
+
 #include "Game.h"
 #include "Text/TextFormatting.h"
 
-
+using json = nlohmann::json;
 
 void PlayerInventory::AddFishToInventory(const Fish &fish, int amount)
 {
@@ -43,7 +45,7 @@ void PlayerInventory::ShowInventory(Game &game, PlayerCoins& coins)
     {
         int fishPrice = game.GetFish(pair.first).FishPrice;
 
-        totalPrice += fishPrice;
+        totalPrice += fishPrice * pair.second;
 
         std::cout << "- " << pair.second << "x " << Fish().ToString(pair.first) << " (" << fishPrice << " coins)" << "\n";
     }
@@ -51,6 +53,21 @@ void PlayerInventory::ShowInventory(Game &game, PlayerCoins& coins)
     std::cout << "\nTotal inventory price: " << totalPrice << " coins.\n";
 
     ShowChoices(coins, totalPrice);
+}
+
+json PlayerInventory::SaveJson() const
+{
+    return json
+    {
+        {"inventory", inventory},
+        {"currentRod", currentRod}
+    };
+}
+
+void PlayerInventory::LoadJson(const json &j)
+{
+    inventory = j.at("inventory").get<std::unordered_map<FishType, int>>();
+    currentRod = j.at("currentRod").get<Rod>();
 }
 
 

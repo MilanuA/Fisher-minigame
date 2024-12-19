@@ -5,7 +5,7 @@ It is a simple project that I created to practice my C++ skills, especially in o
 This project took me approximately 10 hours over the course of 4 days.
 
 ## Installation
-To install the project, you need to clone the repository and build the project using CMake.
+To install the project, you need to clone the repository and build the project using any C++ compiler.
 
 ## Features
 - Random fish catching
@@ -15,9 +15,10 @@ To install the project, you need to clone the repository and build the project u
     - Rod upgrades
 - Level system
     - Some fish can be caught only at certain levels
+- Simple saving and loading of player data
 
 ## Possible future features
 - Locations (different fish can be caught in different locations)
 - Baits (different baits can be used to catch different fish)
-
+- Saving snapshots of the game
 

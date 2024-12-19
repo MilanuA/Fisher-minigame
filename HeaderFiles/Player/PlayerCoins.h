@@ -1,9 +1,9 @@
 #ifndef PLAYERCOINS_H
 #define PLAYERCOINS_H
+#include "SavingLoading/Savable.h"
 
-class PlayerCoins
+class PlayerCoins : public Savable
 {
-
     int coins;
 
 public:
@@ -11,9 +11,13 @@ public:
 
     int GetCoins() const { return coins; }
 
-    void AddCoins(int amount);
-    void DecreaseCoins(int amount);
-    bool HasEnoughCoins(int amount) const { return coins >= amount; }
+    void AddCoins(const int &amount);
+    void DecreaseCoins(const int &amount);
+    bool HasEnoughCoins(const int &amount) const { return coins >= amount; }
+
+    json SaveJson() const override;
+
+    void LoadJson(const json &j) override;
 };
 
 

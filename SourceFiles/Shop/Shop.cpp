@@ -3,7 +3,7 @@
 #include "Text/TextFormatting.h"
 
 
-Shop::Shop(std::shared_ptr<Player> playerPtr) : player(playerPtr)
+Shop::Shop(const std::shared_ptr<Player> &playerPtr) : player(playerPtr)
 {
     rods =
     {

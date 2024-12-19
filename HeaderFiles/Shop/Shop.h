@@ -16,7 +16,7 @@ class Shop
 
 public:
     void ShowShop() const;
-    Shop(std::shared_ptr<Player> playerPtr);
+    Shop(const std::shared_ptr<Player> &playerPtr);
 };
 
 

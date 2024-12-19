@@ -14,10 +14,13 @@ class Game
     std::vector<Fish> fishPool;
     Fishing fishing;
 
+    void SaveGame() const;
+    void LoadGame() const;
+
 public:
     Game();
     void Start();
-    Fish GetFish(FishType fishType);
+    Fish GetFish(const FishType &fishType);
 };
 
 #endif //GAME_H

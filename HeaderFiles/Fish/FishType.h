@@ -22,4 +22,6 @@ enum class FishType {
     Grouper,
     MahiMahi,
 };
+
+
 #endif //FISHTYPE_H

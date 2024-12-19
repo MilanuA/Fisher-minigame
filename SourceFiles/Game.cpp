@@ -1,5 +1,10 @@
 #include "../HeaderFiles/Game.h"
+
+#include <iostream>
+#include "SavingLoading/SavingPaths.h"
 #include "Text/Menu.h"
+#include "Text/TextFormatting.h"
+
 
 Game::Game(): player(std::make_shared<Player>()), fishing(player), shop(player)
 {
@@ -30,10 +35,15 @@ void Game::Start()
     menu.AddOption("Fish", [this]() { fishing.TryFishing(fishPool); });
     menu.AddOption("Show inventory", [this]() { player->ShowInventory(*this); });
     menu.AddOption("Show shop", [this]() { shop.ShowShop(); });
+    menu.AddOption("Save the game", [this]() { SaveGame(); });
+
+    if (SavingPaths::HasSaveFile("player_data"))
+        menu.AddOption("Load the game", [this]() { LoadGame(); });
+
     menu.ShowMenu();
 }
 
-Fish Game::GetFish(FishType fishType)
+Fish Game::GetFish(const FishType &fishType)
 {
     for (const Fish &fish: fishPool)
     {
@@ -42,4 +52,17 @@ Fish Game::GetFish(FishType fishType)
         return fish;
     }
     return Fish{FishType::None, 0, 0, 0};
+}
+
+
+void Game::SaveGame() const
+{
+    player->SavePlayerData();
+    std::cout << TextFormatting::Bold << TextFormatting::Green <<"\nSuccessfully saved the game progress\n"<<TextFormatting::Reset << std::endl;
+}
+
+void Game::LoadGame() const
+{
+    player->LoadPlayerData();
+    std::cout << TextFormatting::Bold << TextFormatting::Green <<"\nSuccessfully loaded the game progress\n"<<TextFormatting::Reset << std::endl;
 }

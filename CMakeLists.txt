@@ -31,4 +31,10 @@ add_executable(Fisher main.cpp
         SourceFiles/Shop/Rod/Rod.cpp
         HeaderFiles/Shop/Rod/Rod.h
         HeaderFiles/Shop/Rod/RodType.h
+        SourceFiles/SavingLoading/SaveLoad.cpp
+        HeaderFiles/SavingLoading/SaveLoad.h
+        SourceFiles/SavingLoading/Savable.cpp
+        HeaderFiles/SavingLoading/Savable.h
+        SourceFiles/SavingLoading/SavingPaths.cpp
+        HeaderFiles/SavingLoading/SavingPaths.h
 )

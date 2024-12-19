@@ -12,17 +12,21 @@ class Player
     PlayerInventory inventory;
     PlayerXP xp;
 
+    void LoadDataFromJson(const json& playerData, const std::string& key, auto& dataObject, const std::string& dataName);
+
 public:
     Player();
     PlayerCoins Coins;
 
-    void AddFish(const Fish& fish, int amount);
-    void EarnXP(int amount);
-    void ShowInventory(Game& game) ;
+    void AddFish(const Fish &fish, const int &amount);
+    void EarnXP(const int &amount);
+    void ShowInventory(Game &game) ;
     void ChangeRodInInventory(const Rod& rod);
 
-    int RodMultiplayer();
+    void SavePlayerData() const;
+    void LoadPlayerData();
 
+    int RodMultiplayer() const;
     int GetLevel() const { return xp.GetLevel(); }
 };
 

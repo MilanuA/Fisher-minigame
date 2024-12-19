@@ -5,11 +5,12 @@
 #include "PlayerCoins.h"
 #include "Fish/Fish.h"
 #include "Fish/FishType.h"
+#include "SavingLoading/Savable.h"
 #include "Shop/Rod/Rod.h"
 
 class Game;
 
-class PlayerInventory
+class PlayerInventory : public Savable
 {
     std::unordered_map<FishType, int> inventory = {};
     void ShowChoices(PlayerCoins& coins, int coinsAdded);
@@ -21,6 +22,9 @@ public:
     void AddFishToInventory(const Fish& fish, int amount);
     void ChangeRod(const Rod& rod);
     void ShowInventory(Game& game, PlayerCoins& coins);
+
+    json SaveJson() const override;
+    void LoadJson(const json &j) override;
 };
 
 
