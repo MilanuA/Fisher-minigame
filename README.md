@@ -5,7 +5,11 @@ It is a simple project that I created to practice my C++ skills, especially in o
 This project took me approximately 10 hours over the course of 4 days.
 
 ## Installation
-To install the project, you need to clone the repository and build the project using any C++ compiler.
+1. Install CMake.
+2. Clone the repository.
+3. Run `cmake` to configure the project.
+4. Build the project using your preferred build system.
+
 
 ## Features
 - Random fish catching
